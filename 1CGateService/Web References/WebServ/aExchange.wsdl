@@ -1,0 +1,1474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd1="http://www.amilen.ru/knit" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12bind="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd2="http://www.axelot.ru/tms2_exchange/package" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:tns="http://www.amilen.ru/knit" name="aExchange" targetNamespace="http://www.amilen.ru/knit" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema xmlns:tns="http://www.axelot.ru/tms2_exchange/package" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.axelot.ru/tms2_exchange/package" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="axArrivalPlan">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="GoodsLine" type="tns:axGoodsLine" />
+        </xs:sequence>
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Date" type="xs:dateTime" use="required" />
+        <xs:attribute name="Number" type="xs:string" use="required" />
+        <xs:attribute name="ExpectedDate" type="xs:dateTime" />
+        <xs:attribute name="OrderSource" type="xs:string" />
+        <xs:attribute name="CounterpartyID" type="xs:string" use="required" />
+        <xs:attribute name="OrganizationID" type="xs:string" />
+        <xs:attribute name="VehiclesID" type="xs:string" />
+        <xs:attribute name="Driver" type="xs:string" />
+        <xs:attribute name="Description" type="xs:string" />
+        <xs:attribute name="ContractNumber" type="xs:string" />
+        <xs:attribute name="ContractDate" type="xs:dateTime" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+        <xs:attribute name="CargoSpace" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axClassifierUnitsMesurement">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Code" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" />
+        <xs:attribute name="FullName" type="xs:string" />
+        <xs:attribute name="Reduction" type="xs:string" />
+        <xs:attribute name="UnitTypes" type="xs:boolean" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axComplementaryElements">
+        <xs:sequence>
+          <xs:element name="Attribute" type="xs:string" />
+          <xs:element name="Value" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="axConsignment">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="NomenclatureID" type="xs:string" use="required" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="Code" type="xs:string" />
+        <xs:attribute name="ConsignmentDate" type="xs:date" use="required" />
+        <xs:attribute name="ProductionDate" type="xs:date" />
+        <xs:attribute name="ExpirationDate" type="xs:date" use="required" />
+        <xs:attribute default="Доступна" name="ConsignmentState" type="xs:string" />
+        <xs:attribute name="CustomsEntryNumber" type="xs:string" />
+        <xs:attribute name="СertificateNumber" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="axContactInformation">
+        <xs:attribute name="Kind" type="xs:string" />
+        <xs:attribute name="Information" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="axContainerCapacity">
+        <xs:attribute name="NomenclatureID" type="xs:string" use="required" />
+        <xs:attribute name="StorangeUnitID" type="xs:string" use="required" />
+        <xs:attribute name="Quantity" type="xs:decimal" use="required" />
+        <xs:attribute name="QuantityMin" type="xs:decimal" />
+        <xs:attribute name="LayerQuantity" type="xs:decimal" />
+        <xs:attribute name="LayerHeight" type="xs:decimal" />
+      </xs:complexType>
+      <xs:complexType name="axCounterparty">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ContactInformation" type="tns:axContactInformation" />
+        </xs:sequence>
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="IsGroup" type="xs:boolean" use="required" />
+        <xs:attribute name="GroupID" type="xs:string" use="required" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="Code" type="xs:string" />
+        <xs:attribute name="FullName" type="xs:string" />
+        <xs:attribute name="LegalEntity" type="xs:boolean" />
+        <xs:attribute name="INN" type="xs:string" />
+        <xs:attribute name="KPP" type="xs:string" />
+        <xs:attribute name="OKPO" type="xs:string" />
+        <xs:attribute name="Buyer" type="xs:boolean" />
+        <xs:attribute name="Supplier" type="xs:boolean" />
+        <xs:attribute name="Warehouse" type="xs:boolean" />
+        <xs:attribute name="OrganizationID" type="xs:string" />
+        <xs:attribute name="Bank" type="xs:string" />
+        <xs:attribute name="ContractNumber" type="xs:string" />
+        <xs:attribute name="ContractDate" type="xs:dateTime" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axCurrency">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Code" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="Downloading" type="xs:boolean" />
+        <xs:attribute name="FullName" type="xs:string" />
+        <xs:attribute name="MainCurrency" type="xs:string" />
+        <xs:attribute name="RecipeParameters" type="xs:string" />
+        <xs:attribute name="Margin" type="xs:decimal" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axDeliveryAddress">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axGoodsLine">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ContainerNumber" nillable="true" type="xs:string" />
+        </xs:sequence>
+        <xs:attribute name="NomenclatureID" type="xs:string" use="required" />
+        <xs:attribute name="StorangeUnitID" type="xs:string" />
+        <xs:attribute name="StatusItemID" type="xs:string" />
+        <xs:attribute name="ConsignmentID" type="xs:string" />
+        <xs:attribute name="TaxRate" type="xs:string" />
+        <xs:attribute name="Quantity" type="xs:decimal" />
+        <xs:attribute name="QuantityUnit" type="xs:decimal" />
+        <xs:attribute name="Amount" type="xs:decimal" />
+        <xs:attribute name="LineNum" type="xs:decimal" />
+        <xs:attribute name="QualityID" type="xs:string" />
+        <xs:attribute name="Set" type="xs:boolean" />
+        <xs:attribute name="SpecificationID" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="axInternalOrder">
+        <xs:sequence>
+          <xs:element name="OrderType" type="xs:string" />
+          <xs:element minOccurs="0" name="SpecificationID" nillable="true" type="xs:string" />
+          <xs:element name="Specification" nillable="true" type="tns:axSpecification" />
+        </xs:sequence>
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Number" type="xs:string" use="required" />
+        <xs:attribute name="NumberCIS" type="xs:string" />
+        <xs:attribute name="Date" type="xs:dateTime" use="required" />
+        <xs:attribute name="DateCIS" type="xs:dateTime" use="required" />
+        <xs:attribute name="OrganizationID" type="xs:string" />
+        <xs:attribute name="NomenclatureID" type="xs:string" use="required" />
+        <xs:attribute name="QualityID" type="xs:string" />
+        <xs:attribute name="ConsignmentID" type="xs:string" use="required" />
+        <xs:attribute name="Quantity" type="xs:decimal" />
+        <xs:attribute name="KittingZone" type="xs:string" />
+        <xs:attribute name="SourceOrderID" type="xs:string" />
+        <xs:attribute name="Description" type="xs:string" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axKindOfContactInformation">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="IsGroup" type="xs:boolean" />
+        <xs:attribute name="GroupID" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="Type" type="xs:string" />
+        <xs:attribute name="EditingInTheDialogue" type="xs:boolean" />
+        <xs:attribute name="RussianOnlyAddress" type="xs:boolean" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axNomenclature">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="IsGroup" type="xs:boolean" use="required" />
+        <xs:attribute name="GroupID" type="xs:string" use="required" />
+        <xs:attribute name="ClassifierUnitsMesurementID" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="Code" type="xs:string" />
+        <xs:attribute name="Articul" type="xs:string" />
+        <xs:attribute name="FullName" type="xs:string" />
+        <xs:attribute name="Service" type="xs:boolean" />
+        <xs:attribute name="weight" type="xs:decimal" />
+        <xs:attribute name="volume" type="xs:decimal" />
+        <xs:attribute name="Description" type="xs:string" />
+        <xs:attribute name="ExpirationDate" type="xs:float" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+        <xs:attribute name="CodeCIS" type="xs:string" />
+        <xs:attribute name="Set" type="xs:boolean" />
+        <xs:attribute name="SpecificationID" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="axOrder">
+        <xs:attribute name="OrderID" type="xs:string" use="required" />
+        <xs:attribute name="Weight" type="xs:decimal" />
+        <xs:attribute name="Volume" type="xs:decimal" />
+        <xs:attribute name="NumberSeats" type="xs:decimal" />
+      </xs:complexType>
+      <xs:complexType name="axOrganization">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ContactInformation" type="tns:axContactInformation" />
+        </xs:sequence>
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Code" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="FullName" type="xs:string" />
+        <xs:attribute name="LegalEntity" type="xs:boolean" />
+        <xs:attribute name="INN" type="xs:string" />
+        <xs:attribute name="KPP" type="xs:string" />
+        <xs:attribute name="OKPO" type="xs:string" />
+        <xs:attribute name="OGRN" type="xs:string" />
+        <xs:attribute name="Bank" type="xs:string" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axPassage">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Order" nillable="true" type="tns:axOrder" />
+        </xs:sequence>
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Date" type="xs:dateTime" use="required" />
+        <xs:attribute name="Number" type="xs:string" use="required" />
+        <xs:attribute name="OrganizationID" type="xs:string" />
+        <xs:attribute name="VehiclesID" type="xs:string" />
+        <xs:attribute name="Driver" type="xs:string" />
+        <xs:attribute name="DriverDocument" type="xs:string" />
+        <xs:attribute name="Forwarder" type="xs:string" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+        <xs:attribute name="Description" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="axRealization">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Number" type="xs:string" use="required" />
+        <xs:attribute name="BarCode" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="axRoute">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="IsGroup" type="xs:boolean" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="GroupID" type="xs:string" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+        <xs:attribute name="Description" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="axSerialNumbers">
+        <xs:attribute name="NomenclatureID" type="xs:string" use="required" />
+        <xs:attribute name="ConsignmentID" type="xs:string" />
+        <xs:attribute name="SerialNumber" type="xs:string" use="required" />
+        <xs:attribute name="SerialNumberEnd" type="xs:string" />
+        <xs:attribute name="ManufacturerBarcode" type="xs:string" use="required" />
+      </xs:complexType>
+      <xs:complexType name="axShippingPlan">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="GoodsLine" type="tns:axGoodsLine" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ComplementaryElements" nillable="true" type="tns:axComplementaryElements" />
+        </xs:sequence>
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Date" type="xs:dateTime" use="required" />
+        <xs:attribute name="Number" type="xs:string" use="required" />
+        <xs:attribute name="ExpectedDate" type="xs:dateTime" />
+        <xs:attribute name="ShipmentDirection" type="xs:string" />
+        <xs:attribute name="Priority" type="xs:string" />
+        <xs:attribute name="CounterpartyID" type="xs:string" use="required" />
+        <xs:attribute name="OrganizationID" type="xs:string" />
+        <xs:attribute name="Description" type="xs:string" />
+        <xs:attribute name="DeliveryAddress" type="xs:string" />
+        <xs:attribute name="RouteID" type="xs:string" />
+        <xs:attribute name="PassageNumber" />
+        <xs:attribute name="ContractNumber" type="xs:string" />
+        <xs:attribute name="ContractDate" type="xs:dateTime" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+        <xs:attribute name="DeliveryComment" type="xs:string" />
+        <xs:attribute name="PaymentType" type="xs:string" />
+        <xs:attribute name="CargoSpace" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axSpecification">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SpecificationComponents" nillable="true" type="tns:axSpecificationComponents" />
+        </xs:sequence>
+        <xs:attribute name="ID" type="xs:string" />
+        <xs:attribute name="OwnerID" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="Main" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axSpecificationComponents">
+        <xs:attribute name="NomenclatureID" type="xs:string" use="required" />
+        <xs:attribute name="QualityID" type="xs:string" />
+        <xs:attribute name="ConsignmentID" type="xs:string" />
+        <xs:attribute name="Quantity" type="xs:decimal" />
+      </xs:complexType>
+      <xs:complexType name="axStatusItem">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="FullName" type="xs:string" />
+        <xs:attribute default="Новый" name="GradationQuality" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="axStorangeUnit">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="ClassifierID" type="xs:string" />
+        <xs:attribute name="OwnerID" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="Code" type="xs:string" />
+        <xs:attribute name="weight" type="xs:decimal" />
+        <xs:attribute name="volume" type="xs:decimal" />
+        <xs:attribute name="height" type="xs:decimal" />
+        <xs:attribute name="depth" type="xs:decimal" />
+        <xs:attribute name="width" type="xs:decimal" />
+        <xs:attribute name="coefficient" type="xs:decimal" />
+        <xs:attribute name="main" type="xs:boolean" />
+        <xs:attribute name="BarCode" type="xs:string" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axVehicles">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="Model" type="xs:string" />
+        <xs:attribute name="StateNumber" type="xs:string" />
+        <xs:attribute name="Driver" type="xs:string" />
+        <xs:attribute name="LoadCapacity" type="xs:decimal" />
+        <xs:attribute name="Volume" type="xs:decimal" />
+        <xs:attribute name="NumberSeats" type="xs:decimal" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:xs2="http://www.amilen.ru/knit" xmlns:xs1="http://www.axelot.ru/tms2_exchange/package" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.amilen.ru/knit" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://www.axelot.ru/tms2_exchange/package" />
+      <xs:complexType name="axArrivalPlan">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="GoodsLine" type="xs2:axGoodsLine" />
+        </xs:sequence>
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Date" type="xs:dateTime" use="required" />
+        <xs:attribute name="Number" type="xs:string" use="required" />
+        <xs:attribute name="ExpectedDate" type="xs:dateTime" use="required" />
+        <xs:attribute name="OrderSource" type="xs:string" />
+        <xs:attribute name="CounterpartyID" type="xs:string" use="required" />
+        <xs:attribute name="OrganizationID" type="xs:string" />
+        <xs:attribute name="VehiclesID" type="xs:string" />
+        <xs:attribute name="Driver" type="xs:string" />
+        <xs:attribute name="Description" type="xs:string" />
+        <xs:attribute name="ContractNumber" type="xs:string" />
+        <xs:attribute name="ContractDate" type="xs:dateTime" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+        <xs:attribute name="CargoSpace" type="xs:boolean" use="required" />
+      </xs:complexType>
+      <xs:complexType name="axClassifierUnitsMesurement">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Code" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" />
+        <xs:attribute name="FullName" type="xs:string" />
+        <xs:attribute name="Reduction" type="xs:string" />
+        <xs:attribute name="UnitTypes" type="xs:boolean" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axComplementaryElements">
+        <xs:sequence>
+          <xs:element name="Attribute" type="xs:string" />
+          <xs:element name="Value" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="axConsignment">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="NomenclatureID" type="xs:string" use="required" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="Code" type="xs:string" />
+        <xs:attribute name="ConsignmentDate" type="xs:date" use="required" />
+        <xs:attribute name="ProductionDate" type="xs:date" />
+        <xs:attribute name="ExpirationDate" type="xs:date" use="required" />
+        <xs:attribute default="Доступна" name="ConsignmentState" type="xs:string" />
+        <xs:attribute name="CustomsEntryNumber" type="xs:string" />
+        <xs:attribute name="СertificateNumber" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="axContactInformation">
+        <xs:attribute name="Kind" type="xs:string" />
+        <xs:attribute name="Information" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="axContainerCapacity">
+        <xs:attribute name="NomenclatureID" type="xs:string" use="required" />
+        <xs:attribute name="StorangeUnitID" type="xs:string" use="required" />
+        <xs:attribute name="Quantity" type="xs:decimal" use="required" />
+        <xs:attribute name="QuantityMin" type="xs:decimal" />
+        <xs:attribute name="LayerQuantity" type="xs:decimal" />
+        <xs:attribute name="LayerHeight" type="xs:decimal" />
+      </xs:complexType>
+      <xs:complexType name="axCounterparty">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ContactInformation" type="xs2:axContactInformation" />
+        </xs:sequence>
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="IsGroup" type="xs:boolean" use="required" />
+        <xs:attribute name="GroupID" type="xs:string" use="required" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="Code" type="xs:string" />
+        <xs:attribute name="FullName" type="xs:string" />
+        <xs:attribute name="LegalEntity" type="xs:boolean" use="required" />
+        <xs:attribute name="INN" type="xs:string" />
+        <xs:attribute name="KPP" type="xs:string" />
+        <xs:attribute name="OKPO" type="xs:string" />
+        <xs:attribute name="Buyer" type="xs:boolean" />
+        <xs:attribute name="Supplier" type="xs:boolean" />
+        <xs:attribute name="Warehouse" type="xs:boolean" />
+        <xs:attribute name="OrganizationID" type="xs:string" />
+        <xs:attribute name="Bank" type="xs:string" />
+        <xs:attribute name="ContractNumber" type="xs:string" />
+        <xs:attribute name="ContractDate" type="xs:dateTime" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axCurrency">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Code" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="Downloading" type="xs:boolean" />
+        <xs:attribute name="FullName" type="xs:string" />
+        <xs:attribute name="MainCurrency" type="xs:string" />
+        <xs:attribute name="RecipeParameters" type="xs:string" />
+        <xs:attribute name="Margin" type="xs:decimal" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axDeliveryAddress">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axGoodsLine">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ContainerNumber" nillable="true" type="xs:string" />
+        </xs:sequence>
+        <xs:attribute name="NomenclatureID" type="xs:string" use="required" />
+        <xs:attribute name="StorangeUnitID" type="xs:string" />
+        <xs:attribute name="StatusItemID" type="xs:string" />
+        <xs:attribute name="ConsignmentID" type="xs:string" />
+        <xs:attribute name="TaxRate" type="xs:string" />
+        <xs:attribute name="Quantity" type="xs:decimal" use="required" />
+        <xs:attribute name="QuantityUnit" type="xs:decimal" use="required" />
+        <xs:attribute name="Amount" type="xs:decimal" use="required" />
+        <xs:attribute name="LineNum" type="xs:decimal" use="required" />
+        <xs:attribute name="QualityID" type="xs:string" />
+        <xs:attribute name="Set" type="xs:boolean" use="required" />
+        <xs:attribute name="SpecificationID" type="xs:string" use="required" />
+        <xs:attribute name="aShippingPlanID" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="axInternalOrder">
+        <xs:sequence>
+          <xs:element name="OrderType" type="xs:string" />
+          <xs:element name="SpecificationID" nillable="true" type="xs:string" />
+          <xs:element name="Specification" nillable="true" type="xs2:axSpecification" />
+        </xs:sequence>
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Number" type="xs:string" use="required" />
+        <xs:attribute name="NumberCIS" type="xs:string" use="required" />
+        <xs:attribute name="Date" type="xs:dateTime" use="required" />
+        <xs:attribute name="DateCIS" type="xs:dateTime" use="required" />
+        <xs:attribute name="OrganizationID" type="xs:string" use="required" />
+        <xs:attribute name="NomenclatureID" type="xs:string" use="required" />
+        <xs:attribute name="QualityID" type="xs:string" />
+        <xs:attribute name="ConsignmentID" type="xs:string" use="required" />
+        <xs:attribute name="Quantity" type="xs:decimal" use="required" />
+        <xs:attribute name="KittingZone" type="xs:string" />
+        <xs:attribute name="SourceOrderID" type="xs:string" use="required" />
+        <xs:attribute name="Description" type="xs:string" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axKindOfContactInformation">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="IsGroup" type="xs:boolean" />
+        <xs:attribute name="GroupID" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="Type" type="xs:string" />
+        <xs:attribute name="EditingInTheDialogue" type="xs:boolean" />
+        <xs:attribute name="RussianOnlyAddress" type="xs:boolean" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axNomenclature">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="IsGroup" type="xs:boolean" use="required" />
+        <xs:attribute name="GroupID" type="xs:string" use="required" />
+        <xs:attribute name="ClassifierUnitsMesurementID" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="Code" type="xs:string" />
+        <xs:attribute name="Articul" type="xs:string" />
+        <xs:attribute name="FullName" type="xs:string" />
+        <xs:attribute name="Service" type="xs:boolean" use="required" />
+        <xs:attribute name="weight" type="xs:decimal" use="required" />
+        <xs:attribute name="volume" type="xs:decimal" use="required" />
+        <xs:attribute name="Description" type="xs:string" />
+        <xs:attribute name="ExpirationDate" type="xs:float" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+        <xs:attribute name="CodeCIS" type="xs:string" />
+        <xs:attribute name="Set" type="xs:boolean" />
+        <xs:attribute name="SpecificationID" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="axOrder">
+        <xs:attribute name="OrderID" type="xs:string" use="required" />
+        <xs:attribute name="Weight" type="xs:decimal" />
+        <xs:attribute name="Volume" type="xs:decimal" />
+        <xs:attribute name="NumberSeats" type="xs:decimal" />
+      </xs:complexType>
+      <xs:complexType name="axOrganization">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ContactInformation" type="xs2:axContactInformation" />
+        </xs:sequence>
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Code" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="FullName" type="xs:string" />
+        <xs:attribute name="LegalEntity" type="xs:boolean" />
+        <xs:attribute name="INN" type="xs:string" />
+        <xs:attribute name="KPP" type="xs:string" />
+        <xs:attribute name="OKPO" type="xs:string" />
+        <xs:attribute name="OGRN" type="xs:string" />
+        <xs:attribute name="Bank" type="xs:string" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axPassage">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Order" nillable="true" type="xs2:axOrder" />
+        </xs:sequence>
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Date" type="xs:dateTime" use="required" />
+        <xs:attribute name="Number" type="xs:string" use="required" />
+        <xs:attribute name="OrganizationID" type="xs:string" />
+        <xs:attribute name="VehiclesID" type="xs:string" use="required" />
+        <xs:attribute name="Driver" type="xs:string" use="required" />
+        <xs:attribute name="DriverDocument" type="xs:string" />
+        <xs:attribute name="Forwarder" type="xs:string" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+        <xs:attribute name="Description" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="axRealization">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Number" type="xs:string" use="required" />
+        <xs:attribute name="BarCode" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="axRoute">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="IsGroup" type="xs:boolean" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="GroupID" type="xs:string" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+        <xs:attribute name="Description" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="axSerialNumbers">
+        <xs:attribute name="NomenclatureID" type="xs:string" use="required" />
+        <xs:attribute name="ConsignmentID" type="xs:string" />
+        <xs:attribute name="SerialNumber" type="xs:string" use="required" />
+        <xs:attribute name="SerialNumberEnd" type="xs:string" />
+        <xs:attribute name="ManufacturerBarcode" type="xs:string" use="required" />
+      </xs:complexType>
+      <xs:complexType name="axShippingPlan">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="GoodsLine" type="xs2:axGoodsLine" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ComplementaryElements" nillable="true" type="xs2:axComplementaryElements" />
+        </xs:sequence>
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Date" type="xs:dateTime" use="required" />
+        <xs:attribute name="Number" type="xs:string" use="required" />
+        <xs:attribute name="ExpectedDate" type="xs:dateTime" use="required" />
+        <xs:attribute name="ShipmentDirection" type="xs:string" />
+        <xs:attribute name="Priority" type="xs:string" />
+        <xs:attribute name="CounterpartyID" type="xs:string" use="required" />
+        <xs:attribute name="OrganizationID" type="xs:string" />
+        <xs:attribute name="Description" type="xs:string" />
+        <xs:attribute name="DeliveryAddress" type="xs:string" />
+        <xs:attribute name="RouteID" type="xs:string" />
+        <xs:attribute name="PassageNumber" />
+        <xs:attribute name="ContractNumber" type="xs:string" />
+        <xs:attribute name="ContractDate" type="xs:dateTime" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+        <xs:attribute name="DeliveryComment" type="xs:string" />
+        <xs:attribute name="PaymentType" type="xs:string" />
+        <xs:attribute name="CargoSpace" type="xs:boolean" use="required" />
+      </xs:complexType>
+      <xs:complexType name="axSpecification">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SpecificationComponents" type="xs2:axSpecificationComponents" />
+        </xs:sequence>
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="OwnerID" type="xs:string" use="required" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="Main" type="xs:boolean" use="required" />
+      </xs:complexType>
+      <xs:complexType name="axSpecificationComponents">
+        <xs:attribute name="NomenclatureID" type="xs:string" use="required" />
+        <xs:attribute name="QualityID" type="xs:string" use="required" />
+        <xs:attribute name="ConsignmentID" type="xs:string" use="required" />
+        <xs:attribute name="Quantity" type="xs:decimal" use="required" />
+      </xs:complexType>
+      <xs:complexType name="axStatusItem">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="FullName" type="xs:string" />
+        <xs:attribute default="Новый" name="GradationQuality" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="axStorangeUnit">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="ClassifierID" type="xs:string" />
+        <xs:attribute name="OwnerID" type="xs:string" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="Code" type="xs:string" />
+        <xs:attribute name="weight" type="xs:decimal" use="required" />
+        <xs:attribute name="volume" type="xs:decimal" use="required" />
+        <xs:attribute name="height" type="xs:decimal" use="required" />
+        <xs:attribute name="depth" type="xs:decimal" use="required" />
+        <xs:attribute name="width" type="xs:decimal" use="required" />
+        <xs:attribute name="coefficient" type="xs:decimal" use="required" />
+        <xs:attribute name="main" type="xs:boolean" use="required" />
+        <xs:attribute name="BarCode" type="xs:string" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="axVehicles">
+        <xs:attribute name="ID" type="xs:string" use="required" />
+        <xs:attribute name="Name" type="xs:string" use="required" />
+        <xs:attribute name="Model" type="xs:string" />
+        <xs:attribute name="StateNumber" type="xs:string" />
+        <xs:attribute name="Driver" type="xs:string" />
+        <xs:attribute name="LoadCapacity" type="xs:decimal" use="required" />
+        <xs:attribute name="Volume" type="xs:decimal" use="required" />
+        <xs:attribute name="NumberSeats" type="xs:decimal" use="required" />
+        <xs:attribute name="IsMarked" type="xs:boolean" />
+      </xs:complexType>
+      <xs:element name="SetArrivalPlan">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs2:axArrivalPlan" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetArrivalPlanResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetClassifierUnitsMesurement">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs2:axClassifierUnitsMesurement" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetClassifierUnitsMesurementResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetConsignment">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs1:axConsignment" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetConsignmentResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetContainerCapacity">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs1:axContainerCapacity" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetContainerCapacityResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetCounterparty">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs2:axCounterparty" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetCounterpartyResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetCurrency">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs1:axCurrency" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetCurrencyResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetDeliveryAddress">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs1:axDeliveryAddress" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetDeliveryAddressResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetInternalOrder">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs1:axInternalOrder" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetInternalOrderResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetKindOfContactInformation">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs1:axKindOfContactInformation" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetKindOfContactInformationResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetNomenclature">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs2:axNomenclature" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetNomenclatureResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrganization">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs1:axOrganization" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetOrganizationResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetPassage">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs2:axPassage" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetPassageResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetRoute">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs2:axRoute" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetRouteResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetSerialNumbers">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs1:axSerialNumbers" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetSerialNumbersResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetShippingPlan">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs2:axShippingPlan" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetShippingPlanResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetSiteSharing">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Code" type="xs:string" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetSiteSharingResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetSpecification">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs1:axSpecification" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetSpecificationResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetStatusItem">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs1:axStorangeUnit" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetStatusItemResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetStorangeUnit">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs2:axStorangeUnit" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetStorangeUnitResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetVehicles">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Object" type="xs2:axVehicles" />
+            <xs:element name="NodeID" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetVehiclesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </types>
+  <message name="SetArrivalPlanRequestMessage">
+    <part name="parameters" element="tns:SetArrivalPlan" />
+  </message>
+  <message name="SetArrivalPlanResponseMessage">
+    <part name="parameters" element="tns:SetArrivalPlanResponse" />
+  </message>
+  <message name="SetClassifierUnitsMesurementRequestMessage">
+    <part name="parameters" element="tns:SetClassifierUnitsMesurement" />
+  </message>
+  <message name="SetClassifierUnitsMesurementResponseMessage">
+    <part name="parameters" element="tns:SetClassifierUnitsMesurementResponse" />
+  </message>
+  <message name="SetConsignmentRequestMessage">
+    <part name="parameters" element="tns:SetConsignment" />
+  </message>
+  <message name="SetConsignmentResponseMessage">
+    <part name="parameters" element="tns:SetConsignmentResponse" />
+  </message>
+  <message name="SetContainerCapacityRequestMessage">
+    <part name="parameters" element="tns:SetContainerCapacity" />
+  </message>
+  <message name="SetContainerCapacityResponseMessage">
+    <part name="parameters" element="tns:SetContainerCapacityResponse" />
+  </message>
+  <message name="SetCounterpartyRequestMessage">
+    <part name="parameters" element="tns:SetCounterparty" />
+  </message>
+  <message name="SetCounterpartyResponseMessage">
+    <part name="parameters" element="tns:SetCounterpartyResponse" />
+  </message>
+  <message name="SetCurrencyRequestMessage">
+    <part name="parameters" element="tns:SetCurrency" />
+  </message>
+  <message name="SetCurrencyResponseMessage">
+    <part name="parameters" element="tns:SetCurrencyResponse" />
+  </message>
+  <message name="SetDeliveryAddressRequestMessage">
+    <part name="parameters" element="tns:SetDeliveryAddress" />
+  </message>
+  <message name="SetDeliveryAddressResponseMessage">
+    <part name="parameters" element="tns:SetDeliveryAddressResponse" />
+  </message>
+  <message name="SetInternalOrderRequestMessage">
+    <part name="parameters" element="tns:SetInternalOrder" />
+  </message>
+  <message name="SetInternalOrderResponseMessage">
+    <part name="parameters" element="tns:SetInternalOrderResponse" />
+  </message>
+  <message name="SetKindOfContactInformationRequestMessage">
+    <part name="parameters" element="tns:SetKindOfContactInformation" />
+  </message>
+  <message name="SetKindOfContactInformationResponseMessage">
+    <part name="parameters" element="tns:SetKindOfContactInformationResponse" />
+  </message>
+  <message name="SetNomenclatureRequestMessage">
+    <part name="parameters" element="tns:SetNomenclature" />
+  </message>
+  <message name="SetNomenclatureResponseMessage">
+    <part name="parameters" element="tns:SetNomenclatureResponse" />
+  </message>
+  <message name="SetOrganizationRequestMessage">
+    <part name="parameters" element="tns:SetOrganization" />
+  </message>
+  <message name="SetOrganizationResponseMessage">
+    <part name="parameters" element="tns:SetOrganizationResponse" />
+  </message>
+  <message name="SetPassageRequestMessage">
+    <part name="parameters" element="tns:SetPassage" />
+  </message>
+  <message name="SetPassageResponseMessage">
+    <part name="parameters" element="tns:SetPassageResponse" />
+  </message>
+  <message name="SetRouteRequestMessage">
+    <part name="parameters" element="tns:SetRoute" />
+  </message>
+  <message name="SetRouteResponseMessage">
+    <part name="parameters" element="tns:SetRouteResponse" />
+  </message>
+  <message name="SetSerialNumbersRequestMessage">
+    <part name="parameters" element="tns:SetSerialNumbers" />
+  </message>
+  <message name="SetSerialNumbersResponseMessage">
+    <part name="parameters" element="tns:SetSerialNumbersResponse" />
+  </message>
+  <message name="SetShippingPlanRequestMessage">
+    <part name="parameters" element="tns:SetShippingPlan" />
+  </message>
+  <message name="SetShippingPlanResponseMessage">
+    <part name="parameters" element="tns:SetShippingPlanResponse" />
+  </message>
+  <message name="SetSiteSharingRequestMessage">
+    <part name="parameters" element="tns:SetSiteSharing" />
+  </message>
+  <message name="SetSiteSharingResponseMessage">
+    <part name="parameters" element="tns:SetSiteSharingResponse" />
+  </message>
+  <message name="SetSpecificationRequestMessage">
+    <part name="parameters" element="tns:SetSpecification" />
+  </message>
+  <message name="SetSpecificationResponseMessage">
+    <part name="parameters" element="tns:SetSpecificationResponse" />
+  </message>
+  <message name="SetStatusItemRequestMessage">
+    <part name="parameters" element="tns:SetStatusItem" />
+  </message>
+  <message name="SetStatusItemResponseMessage">
+    <part name="parameters" element="tns:SetStatusItemResponse" />
+  </message>
+  <message name="SetStorangeUnitRequestMessage">
+    <part name="parameters" element="tns:SetStorangeUnit" />
+  </message>
+  <message name="SetStorangeUnitResponseMessage">
+    <part name="parameters" element="tns:SetStorangeUnitResponse" />
+  </message>
+  <message name="SetVehiclesRequestMessage">
+    <part name="parameters" element="tns:SetVehicles" />
+  </message>
+  <message name="SetVehiclesResponseMessage">
+    <part name="parameters" element="tns:SetVehiclesResponse" />
+  </message>
+  <portType name="aExchangePortType">
+    <operation name="SetArrivalPlan">
+      <input message="tns:SetArrivalPlanRequestMessage" />
+      <output message="tns:SetArrivalPlanResponseMessage" />
+    </operation>
+    <operation name="SetClassifierUnitsMesurement">
+      <input message="tns:SetClassifierUnitsMesurementRequestMessage" />
+      <output message="tns:SetClassifierUnitsMesurementResponseMessage" />
+    </operation>
+    <operation name="SetConsignment">
+      <input message="tns:SetConsignmentRequestMessage" />
+      <output message="tns:SetConsignmentResponseMessage" />
+    </operation>
+    <operation name="SetContainerCapacity">
+      <input message="tns:SetContainerCapacityRequestMessage" />
+      <output message="tns:SetContainerCapacityResponseMessage" />
+    </operation>
+    <operation name="SetCounterparty">
+      <input message="tns:SetCounterpartyRequestMessage" />
+      <output message="tns:SetCounterpartyResponseMessage" />
+    </operation>
+    <operation name="SetCurrency">
+      <input message="tns:SetCurrencyRequestMessage" />
+      <output message="tns:SetCurrencyResponseMessage" />
+    </operation>
+    <operation name="SetDeliveryAddress">
+      <input message="tns:SetDeliveryAddressRequestMessage" />
+      <output message="tns:SetDeliveryAddressResponseMessage" />
+    </operation>
+    <operation name="SetInternalOrder">
+      <input message="tns:SetInternalOrderRequestMessage" />
+      <output message="tns:SetInternalOrderResponseMessage" />
+    </operation>
+    <operation name="SetKindOfContactInformation">
+      <input message="tns:SetKindOfContactInformationRequestMessage" />
+      <output message="tns:SetKindOfContactInformationResponseMessage" />
+    </operation>
+    <operation name="SetNomenclature">
+      <input message="tns:SetNomenclatureRequestMessage" />
+      <output message="tns:SetNomenclatureResponseMessage" />
+    </operation>
+    <operation name="SetOrganization">
+      <input message="tns:SetOrganizationRequestMessage" />
+      <output message="tns:SetOrganizationResponseMessage" />
+    </operation>
+    <operation name="SetPassage">
+      <input message="tns:SetPassageRequestMessage" />
+      <output message="tns:SetPassageResponseMessage" />
+    </operation>
+    <operation name="SetRoute">
+      <input message="tns:SetRouteRequestMessage" />
+      <output message="tns:SetRouteResponseMessage" />
+    </operation>
+    <operation name="SetSerialNumbers">
+      <input message="tns:SetSerialNumbersRequestMessage" />
+      <output message="tns:SetSerialNumbersResponseMessage" />
+    </operation>
+    <operation name="SetShippingPlan">
+      <input message="tns:SetShippingPlanRequestMessage" />
+      <output message="tns:SetShippingPlanResponseMessage" />
+    </operation>
+    <operation name="SetSiteSharing">
+      <input message="tns:SetSiteSharingRequestMessage" />
+      <output message="tns:SetSiteSharingResponseMessage" />
+    </operation>
+    <operation name="SetSpecification">
+      <input message="tns:SetSpecificationRequestMessage" />
+      <output message="tns:SetSpecificationResponseMessage" />
+    </operation>
+    <operation name="SetStatusItem">
+      <input message="tns:SetStatusItemRequestMessage" />
+      <output message="tns:SetStatusItemResponseMessage" />
+    </operation>
+    <operation name="SetStorangeUnit">
+      <input message="tns:SetStorangeUnitRequestMessage" />
+      <output message="tns:SetStorangeUnitResponseMessage" />
+    </operation>
+    <operation name="SetVehicles">
+      <input message="tns:SetVehiclesRequestMessage" />
+      <output message="tns:SetVehiclesResponseMessage" />
+    </operation>
+  </portType>
+  <binding name="aExchangeSoapBinding" type="tns:aExchangePortType">
+    <soapbind:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="SetArrivalPlan">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetArrivalPlan" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetClassifierUnitsMesurement">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetClassifierUnitsMesurement" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetConsignment">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetConsignment" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetContainerCapacity">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetContainerCapacity" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetCounterparty">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetCounterparty" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetCurrency">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetCurrency" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetDeliveryAddress">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetDeliveryAddress" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetInternalOrder">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetInternalOrder" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetKindOfContactInformation">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetKindOfContactInformation" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetNomenclature">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetNomenclature" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetOrganization">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetOrganization" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetPassage">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetPassage" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetRoute">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetRoute" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetSerialNumbers">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetSerialNumbers" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetShippingPlan">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetShippingPlan" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetSiteSharing">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetSiteSharing" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetSpecification">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetSpecification" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetStatusItem">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetStatusItem" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetStorangeUnit">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetStorangeUnit" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetVehicles">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetVehicles" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="aExchangeSoap12Binding" type="tns:aExchangePortType">
+    <soap12bind:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="SetArrivalPlan">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetArrivalPlan" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetClassifierUnitsMesurement">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetClassifierUnitsMesurement" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetConsignment">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetConsignment" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetContainerCapacity">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetContainerCapacity" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetCounterparty">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetCounterparty" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetCurrency">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetCurrency" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetDeliveryAddress">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetDeliveryAddress" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetInternalOrder">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetInternalOrder" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetKindOfContactInformation">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetKindOfContactInformation" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetNomenclature">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetNomenclature" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetOrganization">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetOrganization" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetPassage">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetPassage" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetRoute">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetRoute" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetSerialNumbers">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetSerialNumbers" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetShippingPlan">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetShippingPlan" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetSiteSharing">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetSiteSharing" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetSpecification">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetSpecification" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetStatusItem">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetStatusItem" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetStorangeUnit">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetStorangeUnit" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetVehicles">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit#aExchange:SetVehicles" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="aExchange">
+    <port name="aExchangeSoap" binding="tns:aExchangeSoapBinding">
+      <documentation>
+        <wsi:Claim xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" conformsTo="http://ws-i.org/profiles/basic/1.1" />
+      </documentation>
+      <soapbind:address location="http://10.0.20.11/wms/ws/aexchange.1cws" />
+    </port>
+    <port name="aExchangeSoap12" binding="tns:aExchangeSoap12Binding">
+      <soap12bind:address location="http://10.0.20.11/wms/ws/aexchange.1cws" />
+    </port>
+  </service>
+</definitions>

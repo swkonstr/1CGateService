@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="_1CGateService.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="_1CGateService_WebServ_aExchange" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://10.0.20.11/wms/ws/aexchange.1cws</Value>
+    </Setting>
+    <Setting Name="_1CGateService_WmsReports_aReports" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://10.0.20.11/wms/ws/areports.1cws</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

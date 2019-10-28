@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd1="http://www.amilen.ru/knit/reports" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12bind="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:tns="http://www.amilen.ru/knit/reports" name="aReports" targetNamespace="http://www.amilen.ru/knit/reports" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema xmlns:xs1="http://www.amilen.ru/knit/reports" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.amilen.ru/knit/reports" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="CommodityTurnover">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Docums" type="xs1:CommodityTurnoverDocum" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommodityTurnoverDocum">
+        <xs:sequence>
+          <xs:element name="DocumentID" type="xs:string" />
+          <xs:element name="Date" type="xs:dateTime" />
+          <xs:element name="Number" type="xs:string" />
+          <xs:element name="OrderSource" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Lines" type="xs1:CommodityTurnoverDocumLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommodityTurnoverDocumLine">
+        <xs:sequence>
+          <xs:element name="OwnerID" type="xs:string" />
+          <xs:element name="NomenclatureID" type="xs:string" />
+          <xs:element name="StorangeUnitID" type="xs:string" />
+          <xs:element name="StatusItemID" type="xs:string" />
+          <xs:element name="Defect" type="xs:boolean" />
+          <xs:element name="ExpirationDate" type="xs:date" />
+          <xs:element name="ConsignmentNumber" nillable="true" type="xs:string" />
+          <xs:element name="ArrivalQuantity" type="xs:decimal" />
+          <xs:element name="ArrivalQuantityUnit" type="xs:decimal" />
+          <xs:element name="ExpenseQuantity" type="xs:decimal" />
+          <xs:element name="ExpenseQuantityUnit" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LoadedArrivalPlan">
+        <xs:sequence>
+          <xs:element name="DocumentID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Lines" type="xs1:LoadedArrivalPlanLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LoadedArrivalPlanLine">
+        <xs:sequence>
+          <xs:element name="NomenclatureID" type="xs:string" />
+          <xs:element name="StorangeUnitID" type="xs:string" />
+          <xs:element name="StatusItemID" type="xs:string" />
+          <xs:element name="Defect" type="xs:boolean" />
+          <xs:element name="Quantity" type="xs:decimal" />
+          <xs:element name="QuantityUnit" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LoadedArrivalPlanList">
+        <xs:sequence>
+          <xs:element name="BeginPeriod" type="xs:dateTime" />
+          <xs:element name="EndPeriod" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Docums" type="xs1:LoadedArrivalPlan" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LoadedShipmentPlan">
+        <xs:sequence>
+          <xs:element name="DocumentID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Lines" type="xs1:LoadedShipmentPlanLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LoadedShipmentPlanLine">
+        <xs:sequence>
+          <xs:element name="NomenclatureID" type="xs:string" />
+          <xs:element name="StorangeUnitID" type="xs:string" />
+          <xs:element name="StatusItemID" type="xs:string" />
+          <xs:element name="Defect" type="xs:boolean" />
+          <xs:element name="Quantity" type="xs:decimal" />
+          <xs:element name="QuantityUnit" type="xs:decimal" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="SerialNumbers" nillable="true" type="xs1:аSerialNumber" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LoadedShipmentPlanList">
+        <xs:sequence>
+          <xs:element name="BeginPeriod" type="xs:dateTime" />
+          <xs:element name="EndPeriod" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Docums" type="xs1:LoadedShipmentPlan" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockBalance">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Lines" type="xs1:StockBalanceLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StockBalanceLine">
+        <xs:sequence>
+          <xs:element name="NomenclatureID" type="xs:string" />
+          <xs:element name="StatusItemID" type="xs:string" />
+          <xs:element name="Defect" type="xs:boolean" />
+          <xs:element name="ExpirationDate" type="xs:date" />
+          <xs:element name="Quantity" type="xs:decimal" />
+        </xs:sequence>
+        <xs:attribute name="Set" type="xs:boolean" use="required" />
+      </xs:complexType>
+      <xs:complexType name="aInventoryAct">
+        <xs:sequence>
+          <xs:element name="DocumentID" type="xs:string" />
+          <xs:element name="TypeDocumentID" type="xs:string" />
+          <xs:element name="TypeDocumentName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Lines" type="xs1:aInventoryActLine" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="aInventoryActLine">
+        <xs:sequence>
+          <xs:element name="NomenclatureID" type="xs:string" />
+          <xs:element name="NomenclatureName" type="xs:string" />
+          <xs:element name="StatusItemID" type="xs:string" />
+          <xs:element name="StatusItemLackOfID" type="xs:string" />
+          <xs:element name="StatusItemLackOfName" type="xs:string" />
+          <xs:element name="StatusItemSurplusID" type="xs:string" />
+          <xs:element name="StatusItemSurplusName" type="xs:string" />
+          <xs:element name="Defect" type="xs:boolean" />
+          <xs:element name="Quantity" type="xs:decimal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="aInventoryActList">
+        <xs:sequence>
+          <xs:element name="BeginPeriod" type="xs:dateTime" />
+          <xs:element name="EndPeriod" type="xs:dateTime" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Docums" type="xs1:aInventoryAct" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="аSerialNumber">
+        <xs:sequence>
+          <xs:element name="SerialNumberText" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetLoadedArrivalPlan">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="BeginPeriod" type="xs:dateTime" />
+            <xs:element name="EndPeriod" type="xs:dateTime" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetLoadedArrivalPlanResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs1:LoadedArrivalPlanList" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetStockBalance">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Date" type="xs:dateTime" />
+            <xs:element name="OrganizationID" nillable="true" type="xs:string" />
+            <xs:element name="NomenclatureID" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetStockBalanceResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs1:StockBalance" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetLoadedShipmentPlan">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="BeginPeriod" type="xs:dateTime" />
+            <xs:element name="EndPeriod" type="xs:dateTime" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetLoadedShipmentPlanResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs1:LoadedShipmentPlanList" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetInventoryAct">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="BeginPeriod" type="xs:dateTime" />
+            <xs:element name="EndPeriod" type="xs:dateTime" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetInventoryActResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs1:aInventoryActList" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </types>
+  <message name="GetLoadedArrivalPlanRequestMessage">
+    <part name="parameters" element="tns:GetLoadedArrivalPlan" />
+  </message>
+  <message name="GetLoadedArrivalPlanResponseMessage">
+    <part name="parameters" element="tns:GetLoadedArrivalPlanResponse" />
+  </message>
+  <message name="GetStockBalanceRequestMessage">
+    <part name="parameters" element="tns:GetStockBalance" />
+  </message>
+  <message name="GetStockBalanceResponseMessage">
+    <part name="parameters" element="tns:GetStockBalanceResponse" />
+  </message>
+  <message name="GetLoadedShipmentPlanRequestMessage">
+    <part name="parameters" element="tns:GetLoadedShipmentPlan" />
+  </message>
+  <message name="GetLoadedShipmentPlanResponseMessage">
+    <part name="parameters" element="tns:GetLoadedShipmentPlanResponse" />
+  </message>
+  <message name="GetInventoryActRequestMessage">
+    <part name="parameters" element="tns:GetInventoryAct" />
+  </message>
+  <message name="GetInventoryActResponseMessage">
+    <part name="parameters" element="tns:GetInventoryActResponse" />
+  </message>
+  <portType name="aReportsPortType">
+    <operation name="GetLoadedArrivalPlan">
+      <input message="tns:GetLoadedArrivalPlanRequestMessage" />
+      <output message="tns:GetLoadedArrivalPlanResponseMessage" />
+    </operation>
+    <operation name="GetStockBalance">
+      <input message="tns:GetStockBalanceRequestMessage" />
+      <output message="tns:GetStockBalanceResponseMessage" />
+    </operation>
+    <operation name="GetLoadedShipmentPlan">
+      <input message="tns:GetLoadedShipmentPlanRequestMessage" />
+      <output message="tns:GetLoadedShipmentPlanResponseMessage" />
+    </operation>
+    <operation name="GetInventoryAct">
+      <input message="tns:GetInventoryActRequestMessage" />
+      <output message="tns:GetInventoryActResponseMessage" />
+    </operation>
+  </portType>
+  <binding name="aReportsSoapBinding" type="tns:aReportsPortType">
+    <soapbind:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="GetLoadedArrivalPlan">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit/reports#aReports:GetLoadedArrivalPlan" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetStockBalance">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit/reports#aReports:GetStockBalance" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetLoadedShipmentPlan">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit/reports#aReports:GetLoadedShipmentPlan" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetInventoryAct">
+      <soapbind:operation soapAction="http://www.amilen.ru/knit/reports#aReports:GetInventoryAct" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="aReportsSoap12Binding" type="tns:aReportsPortType">
+    <soap12bind:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="GetLoadedArrivalPlan">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit/reports#aReports:GetLoadedArrivalPlan" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetStockBalance">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit/reports#aReports:GetStockBalance" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetLoadedShipmentPlan">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit/reports#aReports:GetLoadedShipmentPlan" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetInventoryAct">
+      <soap12bind:operation soapAction="http://www.amilen.ru/knit/reports#aReports:GetInventoryAct" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="aReports">
+    <port name="aReportsSoap" binding="tns:aReportsSoapBinding">
+      <documentation>
+        <wsi:Claim xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" conformsTo="http://ws-i.org/profiles/basic/1.1" />
+      </documentation>
+      <soapbind:address location="http://10.0.20.11/wms/ws/areports.1cws" />
+    </port>
+    <port name="aReportsSoap12" binding="tns:aReportsSoap12Binding">
+      <soap12bind:address location="http://10.0.20.11/wms/ws/areports.1cws" />
+    </port>
+  </service>
+</definitions>

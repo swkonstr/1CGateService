@@ -1,0 +1,9 @@
+C:\Users\itprog\source\repos\1CGateService\bin\Release\1CGateService.exe.config
+C:\Users\itprog\source\repos\1CGateService\bin\Release\1CGateService.exe
+C:\Users\itprog\source\repos\1CGateService\bin\Release\1CGateService.XmlSerializers.dll
+C:\Users\itprog\source\repos\1CGateService\bin\Release\1CGateService.pdb
+C:\Users\itprog\source\repos\1CGateService\obj\Release\1CGateService.csprojAssemblyReference.cache
+C:\Users\itprog\source\repos\1CGateService\obj\Release\1CGateService.csproj.CoreCompileInputs.cache
+C:\Users\itprog\source\repos\1CGateService\obj\Release\1CGateService.exe
+C:\Users\itprog\source\repos\1CGateService\obj\Release\1CGateService.pdb
+C:\Users\itprog\source\repos\1CGateService\obj\Release\1CGateService.XmlSerializers.dll
